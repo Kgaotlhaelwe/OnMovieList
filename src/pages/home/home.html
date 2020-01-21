@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title text-center>
+      MOVIE LIST
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+<ion-list *ngFor="let m of movieList; let i =index">
+    <ion-item-sliding (press)="View(m.images ,m.title ,m.description , m.release_date.substring(0 , 10) )">
+      <ion-item>
+        <ion-thumbnail item-start>
+            <img src="../../assets/imgs/gettyimages-458467163-612x612.jpg">
+        </ion-thumbnail>
+        <h5>{{m.title}}</h5>
+       
+        <p>{{m.description}}</p>  <br>
+        <p text-end >{{m.release_date.substring(0 , 10)}}</p>
+       
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-icon name="trash" color="danger" (click)="delete(m.id , i)" ></ion-icon> &nbsp; &nbsp; &nbsp;
+        <ion-icon ios="ios-create" color="secondary" (click)="update(m.id ,m.title ,m.description , m.release_date.substring(0 , 10))" md="md-create"></ion-icon>
+      </ion-item-options>
+    </ion-item-sliding>
+
+  </ion-list>
+
+  <ion-fab right bottom>
+    <button ion-fab color="light" (click)="showPrompt()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+
+  </ion-fab>
+</ion-content>

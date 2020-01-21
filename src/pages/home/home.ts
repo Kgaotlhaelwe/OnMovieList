@@ -11,8 +11,9 @@ import { ViewPage } from "../../pages/view/view"
   templateUrl: 'home.html'
 })
 export class HomePage {
-  movieList = new Array(); 
-  f :boolean = false ;
+  movieList = new Array();
+  noMovie: boolean = false;
+  
 
 
   constructor(public navCtrl: NavController, public movie: MovieProvider, public alertCtrl: AlertController) {
@@ -20,10 +21,10 @@ export class HomePage {
       this.movieList = data;
       console.log(this.movieList)
       console.log(this.movieList.length)
-      if(this.movieList.length == 0){
-        this.f =true ;
-      } else{
-        this.f = false ;
+      if (this.movieList.length == 0) {
+        this.noMovie = true;
+      } else {
+        this.noMovie= false;
       }
     })
 
@@ -33,10 +34,10 @@ export class HomePage {
   delete(id, index) {
     this.movie.deleteMovie(id).then((data) => {
       this.movieList.splice(index, 1)
-      if(this.movieList.length == 0){
-        this.f =true ;
-      }else{
-        this.f=false
+      if (this.movieList.length == 0) {
+        this.noMovie = true;
+      } else {
+        this.noMovie = false
       }
       this.movie.presentToast("Deleted Successfully");
     })
@@ -91,10 +92,10 @@ export class HomePage {
             }
             this.movie.addMovie(data.title, data.description, data.release_date, data.image).then((data) => {
               this.movieList.push(obj);
-              if(this.movieList.length == 0){
-                this.f =true ;
-              }else{
-                this.f =false ;
+              if (this.movieList.length == 0) {
+                this.noMovie = true;
+              } else {
+                this.noMovie = false;
               }
               this.movie.presentToast("Added successully");
 
@@ -117,11 +118,11 @@ export class HomePage {
       buttons: ['OK']
     });
     alert.present();
-  
+
   }
 
 
-  update(id, title, description, release_date , index) {
+  update(id, title, description, release_date, index) {
     const prompt = this.alertCtrl.create({
       title: 'ADD MOVIE',
       message: "",
@@ -157,7 +158,7 @@ export class HomePage {
         {
           text: 'Update',
           handler: data => {
-           this.movie.updateMovie(data.title, data.description, data.release_date, id).then(() => {
+            this.movie.updateMovie(data.title, data.description, data.release_date, id).then(() => {
               this.movie.getMovies().then((data: any) => {
                 this.movieList = data;
               })
@@ -181,7 +182,6 @@ export class HomePage {
     this.navCtrl.push(ViewPage, { movie: movie })
 
   }
-
 
 
 }

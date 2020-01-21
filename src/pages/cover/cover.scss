@@ -24,45 +24,11 @@ page-cover {
         -ms-transform: translate(-50%, -50%);
         transform: translate(-50%, -50%);
     }
-    .txt{
-        // position: fixed;
-        position: relative;
-        background-color: rgba(0, 0, 0, 0);
-        top: 50%;
-        left: 50%;
-        -webkit-transform: translate(-50%, -50%);
-        -moz-transform: translate(-50%, -50%);
-        -o-transform: translate(-50%, -50%);
-        -ms-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%);
     
-    }
    
-   
-    .up{
-        position: absolute;
-         top: 90%;
-         left: 50%;
-        -webkit-transform: translate(-50%, -50%);
-        -moz-transform: translate(-50%, -50%);
-        -o-transform: translate(-50%, -50%);
-        -ms-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%);
-    }
-    .av{
-        position: absolute;
-        height: 50px;
-        width: 50px;
-        border-radius: 100px;
-        top: 35%;
-        left: 50%;
-       -webkit-transform: translate(-50%, -50%);
-       -moz-transform: translate(-50%, -50%);
-       -o-transform: translate(-50%, -50%);
-       -ms-transform: translate(-50%, -50%);
-       transform: translate(-50%, -50%);
-    }
-    #asd{
+  
+
+    #secondmain{
         position: fixed;
         top: 70%;
         left: 50%;
@@ -80,11 +46,13 @@ page-cover {
     ion-icon{
         font-size:100px;
         color:cornflowerblue;
-        padding-top: 13%;
-        padding-left: 30%;
+        padding-top: 25%;
+        padding-left: 35%;
     }
   
-  
+  .btn{
+      margin-left:6%;
+  }
   
 
 }

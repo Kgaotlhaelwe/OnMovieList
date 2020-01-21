@@ -1,34 +1,40 @@
 <ion-header>
   <ion-navbar>
-    <ion-title text-center>
-      MOVIE LIST
+    <ion-title text-center >
+      MovieList
     </ion-title>
-    
-    <ion-icon item-end name="help" (click)="showAlertHelp()" ></ion-icon>
-    
+
+      <ion-icon  text-end name="help" (click)="showAlertHelp()"></ion-icon>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-<ion-list *ngFor="let m of movieList; let i =index">
+<ion-content style="margin-top: 5%;">
+  <ion-list *ngFor="let m of movieList; let i =index">
     <ion-item-sliding (press)="View(m.images ,m.title ,m.description , m.release_date.substring(0 , 10) )">
       <ion-item>
         <ion-thumbnail item-start>
-            <img src="../../assets/imgs/movie.png">
+          <img src="../../assets/imgs/movie.png">
         </ion-thumbnail>
         <h5>{{m.title}}</h5>
-       
-        <p>{{m.description}}</p>  <br>
-        <p text-end >{{m.release_date.substring(0 , 10)}}</p>
-       
+
+        <p>{{m.description}}</p> <br>
+        <p text-end>{{m.release_date.substring(0 , 10)}}</p>
+
       </ion-item>
       <ion-item-options side="end">
-        <ion-icon name="trash" color="danger" (click)="delete(m.id , i)" ></ion-icon> &nbsp; &nbsp; &nbsp;
-        <ion-icon ios="ios-create" color="secondary" (click)="update(m.id ,m.title ,m.description , m.release_date.substring(0 , 10))" md="md-create"></ion-icon>
+        <ion-icon name="trash" color="danger" (click)="delete(m.id , i)"></ion-icon> &nbsp; &nbsp; &nbsp;
+        <ion-icon ios="ios-create" color="secondary"
+          (click)="update(m.id ,m.title ,m.description , m.release_date.substring(0 , 10 , i))" md="md-create">
+        </ion-icon>
       </ion-item-options>
     </ion-item-sliding>
 
+
+
   </ion-list>
+  <div *ngIf="f">
+    <h5 text-center> Hi there <br>currently you don't have any movie listed . <br>Add a movie </h5>
+  </div>
 
   <ion-fab right bottom>
     <button ion-fab color="light" (click)="showPrompt()">

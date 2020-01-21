@@ -11,11 +11,20 @@ import { ViewPage } from "../../pages/view/view"
   templateUrl: 'home.html'
 })
 export class HomePage {
-  movieList = new Array();
+  movieList = new Array(); 
+  f :boolean = false ;
+
 
   constructor(public navCtrl: NavController, public movie: MovieProvider, public alertCtrl: AlertController) {
     this.movie.getMovies().then((data: any) => {
       this.movieList = data;
+      console.log(this.movieList)
+      console.log(this.movieList.length)
+      if(this.movieList.length == 0){
+        this.f =true ;
+      } else{
+        this.f = false ;
+      }
     })
 
   }
@@ -24,6 +33,11 @@ export class HomePage {
   delete(id, index) {
     this.movie.deleteMovie(id).then((data) => {
       this.movieList.splice(index, 1)
+      if(this.movieList.length == 0){
+        this.f =true ;
+      }else{
+        this.f=false
+      }
       this.movie.presentToast("Deleted Successfully");
     })
 
@@ -77,6 +91,11 @@ export class HomePage {
             }
             this.movie.addMovie(data.title, data.description, data.release_date, data.image).then((data) => {
               this.movieList.push(obj);
+              if(this.movieList.length == 0){
+                this.f =true ;
+              }else{
+                this.f =false ;
+              }
               this.movie.presentToast("Added successully");
 
             }).catch(error => {
@@ -102,7 +121,7 @@ export class HomePage {
   }
 
 
-  update(id, title, description, release_date) {
+  update(id, title, description, release_date , index) {
     const prompt = this.alertCtrl.create({
       title: 'ADD MOVIE',
       message: "",
@@ -138,14 +157,10 @@ export class HomePage {
         {
           text: 'Update',
           handler: data => {
-            let obj = {
-              title: data.title,
-              description: data.description,
-              release_date: data.release_date,
-              image: data.image
-            }
-            this.movie.updateMovie(data.title, data.description, data.release_date, id).then(() => {
-              this.movieList.splice(id, 0, obj)
+           this.movie.updateMovie(data.title, data.description, data.release_date, id).then(() => {
+              this.movie.getMovies().then((data: any) => {
+                this.movieList = data;
+              })
               this.movie.presentToast("Updated successully");
             })
           }

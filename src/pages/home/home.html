@@ -3,6 +3,9 @@
     <ion-title text-center>
       MOVIE LIST
     </ion-title>
+    
+    <ion-icon item-end name="help" (click)="showAlertHelp()" ></ion-icon>
+    
   </ion-navbar>
 </ion-header>
 
@@ -11,7 +14,7 @@
     <ion-item-sliding (press)="View(m.images ,m.title ,m.description , m.release_date.substring(0 , 10) )">
       <ion-item>
         <ion-thumbnail item-start>
-            <img src="../../assets/imgs/gettyimages-458467163-612x612.jpg">
+            <img src="../../assets/imgs/movie.png">
         </ion-thumbnail>
         <h5>{{m.title}}</h5>
        

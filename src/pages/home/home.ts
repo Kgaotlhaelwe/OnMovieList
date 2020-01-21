@@ -89,6 +89,17 @@ export class HomePage {
     prompt.present();
   }
 
+  showAlertHelp() {
+    const alert = this.alertCtrl.create({
+      title: 'HELP',
+      subTitle: `TO DELETE AND UPDATE YOU SWIPE  .TO VIEW MORE INFORMATION YOU PRESS
+      
+      `,
+      buttons: ['OK']
+    });
+    alert.present();
+  
+  }
 
 
   update(id, title, description, release_date) {
